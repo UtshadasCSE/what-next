@@ -1,62 +1,50 @@
-"use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
 import React from "react";
 
-export default function Navbar() {
-  const pathName = usePathname();
-  const router = useRouter();
-  if (pathName.includes("dashboard")) return <div>Hello Dash Nav</div>;
-  const handler = () => {
-    router.push("/login");
-  };
+const Navbar = () => {
   const navLinks = [
     {
-      title: "About",
-      path: "/about",
+      title: "Home",
+      path: "/",
     },
     {
-      title: "Services",
-      path: "/services",
-    },
-    {
-      title: "Contact",
-      path: "/contact",
+      title: "Posts",
+      path: "/posts",
     },
     {
       title: "Blogs",
       path: "/blogs",
     },
+    {
+      title: "Meals",
+      path: "/meals",
+    },
+    {
+      title: "Contact",
+      path: "/contact",
+    },
   ];
   return (
-    <div>
-      <div>
-        <nav className="bg-slate-800 text-white flex justify-between items-center p-3">
-          <div>Logo</div>
-          <div>
-            <ul className="flex gap-4">
-              {navLinks?.map((link) => (
-                <Link
-                  key={link.path}
-                  href={link.path}
-                  className={`${pathName === link.path && "text-yellow-400"}`}
-                >
-                  {link.title}
-                </Link>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <button
-              onClick={handler}
-              className="p-3 bg-pink-300 text-black rounded-md"
-            >
-              Login
-            </button>
-          </div>
-        </nav>
-      </div>
+    <div className="bg-purple-400 ">
+      <nav className="flex justify-between items-center mx-5 py-2">
+        <div>
+          <h2>Logo</h2>
+        </div>
+        <div>
+          <ul className="flex gap-3">
+            {navLinks?.map((link) => (
+              <Link key={link.path} href={link.path}>
+                {link.title}
+              </Link>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <button className="p-4 bg-red-500 rounded-md">Login</button>
+        </div>
+      </nav>
     </div>
   );
-}
+};
+
+export default Navbar;
